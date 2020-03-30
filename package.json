@@ -1,0 +1,29 @@
+{
+  "name": "bossparticipation",
+  "version": "1.0.0",
+  "description": "An app to track the girls' participation points",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvillaraza/BOSSparticipation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alvillaraza/BOSSparticipation/issues"
+  },
+  "homepage": "https://github.com/alvillaraza/BOSSparticipation#readme",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "knex": "^0.20.13",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
