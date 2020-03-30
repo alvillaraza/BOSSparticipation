@@ -3,10 +3,7 @@ exports.up = function(knex) {
     .createTable("activities", tbl => {
       tbl.increments();
 
-      tbl
-        .string("name", 255)
-        .notNullable()
-        .unique();
+      tbl.string("name", 255).notNullable();
 
       tbl.integer("points").notNullable();
 
@@ -20,10 +17,12 @@ exports.up = function(knex) {
 
       tbl.integer("ec_points");
     })
-    .createTable("employees", tbl => {
+
+    .createTable("users", tbl => {
       tbl.increments();
 
       tbl.string("name", 255).notNullable();
+      tbl.boolean("is_admin").notNullable();
 
       tbl
         .string("activity_id")
@@ -37,7 +36,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema
-    .dropTableIfExists("activities")
-    .dropTableIfExists("employyes");
+  return knex.schema.dropTableIfExists("activities").dropTableIfExists("users");
 };
