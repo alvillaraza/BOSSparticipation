@@ -18,16 +18,17 @@ exports.up = function(knex) {
       tbl.integer("ec_points");
     })
 
-    .createTable("users", tbl => {
-      tbl.increments();
+    .createTable("users", users => {
+      users.increments();
 
-      tbl.string("name", 255).notNullable();
-      tbl.boolean("is_admin").notNullable();
+      users.string("name", 255).notNullable().unique();
+      users.string('password', 128).notNullable();
 
-      tbl
+      users.boolean("is_admin").notNullable();
+
+      users
         .string("activity_id")
         .unsigned()
-        .notNullable()
         .references("id")
         .inTable("activities")
         .onDelete("CASCADE")
