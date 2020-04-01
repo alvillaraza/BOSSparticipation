@@ -4,6 +4,7 @@ module.exports = {
   get,
   getById,
   // getUserPosts,
+  findBy,
   insert,
   update,
   remove
@@ -17,6 +18,10 @@ function getById(id) {
   return db("users")
     .where({ id })
     .first();
+}
+
+function findBy(filter) {
+  return db('users').where(filter);
 }
 
 // function getUserActivities(userId) {

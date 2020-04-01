@@ -21,10 +21,10 @@ exports.up = function(knex) {
     .createTable("users", users => {
       users.increments();
 
-      users.string("name", 255).notNullable().unique();
+      users.string("username", 255).notNullable().unique();
       users.string('password', 128).notNullable();
 
-      users.boolean("is_admin").notNullable();
+      users.boolean("is_admin");
 
       users
         .string("activity_id")
