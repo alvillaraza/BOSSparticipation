@@ -23,7 +23,7 @@ exports.seed = function(knex) {
       points: "5",
       date: "05/23/2018",
       activity_type: "costume design",
-      desc: "design a full costume"
+      desc: "design a full costumes"
     }
   ]);
 };
