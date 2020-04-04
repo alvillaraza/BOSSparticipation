@@ -7,7 +7,7 @@ exports.up = function (knex) {
     tbl.string("username", 255).notNullable().unique();
     tbl.string('password', 128).notNullable();
 
-    tbl.boolean("is_admin");
+    tbl.boolean("is_owner");
 
     tbl
       .string("activity_id")

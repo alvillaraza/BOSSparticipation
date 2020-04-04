@@ -7,7 +7,7 @@ exports.up = function (knex) {
     users.string("username", 255).notNullable().unique();
     users.string('password', 128).notNullable();
 
-    users.boolean("is_admin");
+    users.boolean("is_owner");
 
     users
       .string("activity_id")

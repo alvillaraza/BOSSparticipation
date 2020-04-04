@@ -13,10 +13,10 @@ router.post("/register_employees", (req, res) => {
   user.password = hash;
 
   Employees.insert(user)
-    .then(saved => {
+    .then((saved) => {
       res.status(201).json(saved);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).json({ err: "couldn't add user" });
     });
 });
@@ -26,7 +26,7 @@ router.post("/login/employees", (req, res) => {
 
   Employees.findBy({ username })
     .first()
-    .then(user => {
+    .then((user) => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
 
@@ -37,7 +37,7 @@ router.post("/login/employees", (req, res) => {
           .json({ message: "Please provide correct username and password" });
       }
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({ error: "There was an error logging in " });
     });
 });
@@ -50,10 +50,10 @@ router.post("/register", (req, res) => {
   user.password = hash;
 
   Users.insert(user)
-    .then(saved => {
+    .then((saved) => {
       res.status(201).json(saved);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json(error);
     });
 });
@@ -63,19 +63,22 @@ router.post("/login", (req, res) => {
 
   Users.findBy({ username })
     .first()
-    .then(user => {
+    .then((user) => {
+      console.log(user);
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user); //get a token
 
         res.status(200).json({
-          message: `Welcome ${user.username}!`,
-          token //send the token
+          user_id: user.id,
+          username: user.username,
+          is_owner: user.is_owner,
+          token, //send the token
         });
       } else {
         res.status(401).json({ message: "Invalid Credentials" });
       }
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json(error);
     });
 });
@@ -83,12 +86,12 @@ router.post("/login", (req, res) => {
 function generateToken(user) {
   const payload = {
     subject: user.id,
-    username: user.username
-    // role: user.role || 'user',
+    username: user.username,
+    is_owner: false,
   };
 
   const options = {
-    expiresIn: "2h"
+    expiresIn: "2h",
   };
 
   return jwt.sign(payload, jwtSecret, options);
