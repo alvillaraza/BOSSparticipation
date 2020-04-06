@@ -16,6 +16,8 @@ exports.up = function (knex) {
       .inTable("activities")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
+    
+    users.integer('total_points');
   });
   
 };
